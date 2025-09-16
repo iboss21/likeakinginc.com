@@ -1,382 +1,243 @@
-# Like A King Inc. — Monorepo
+# Like A King Inc. — Professional Business Services
 
 ![Org](https://img.shields.io/badge/Org-Like%20A%20King%20Inc.-111111)
-![License](https://img.shields.io/badge/License-MIT-2ea44f)
-![Made with](https://img.shields.io/badge/Made%20with-Typescript-3178c6)
-![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF)
-![Design](https://img.shields.io/badge/Design-21st.dev%20%2B%20Glassmorphism-D4AF37)
+![Focus](https://img.shields.io/badge/Focus-Professional%20Services%20%7C%20Engineering%20%7C%20Logistics-D4AF37)
+![Regions](https://img.shields.io/badge/Regions-US%20%7C%20EU%20%7C%20GE-0F0F10)
+![License](https://img.shields.io/badge/Code-MIT-informational)
+![Security](https://img.shields.io/badge/Security-Privacy%20by%20Design-success)
 
-A modern, multi-product monorepo powering the **Like A King Inc.** ecosystem: luxury-grade web experiences, AI-driven SaaS, e-commerce platforms, and game-mod marketplaces. This repo centralizes shared UI, configuration, CI/CD, and service integrations for consistent quality and speed.
+This repository is the public overview and documentation hub for **Like A King Inc.**—a multi-disciplinary services company delivering **logistics & trucking operations**, **web & product engineering**, **AI/data solutions**, **SaaS incubation**, and **low-voltage/CCTV installation & integration**. We combine hands-on field expertise with modern software practices to ship reliable systems end-to-end.
 
 ---
 
 ## Table of Contents
 
-* [Vision & Principles](#vision--principles)
-* [Products & Apps](#products--apps)
-* [Architecture](#architecture)
-* [Tech Stack](#tech-stack)
-* [Repository Structure](#repository-structure)
-* [Design System & Brand](#design-system--brand)
-* [Getting Started](#getting-started)
-* [Configuration](#configuration)
-* [Development Workflow](#development-workflow)
-* [Quality Gates](#quality-gates)
-* [CI/CD](#cicd)
-* [Security & Disclosure](#security--disclosure)
-* [Contributing](#contributing)
-* [Issue Types](#issue-types)
+* [What We Do](#what-we-do)
+* [Flagship Projects & Brands](#flagship-projects--brands)
+* [Industries Served](#industries-served)
+* [Engagement Models](#engagement-models)
+* [Service Catalog](#service-catalog)
+* [Process & Delivery](#process--delivery)
+* [Technology & Tooling](#technology--tooling)
+* [Security, Privacy & Compliance](#security-privacy--compliance)
+* [SLA & Support](#sla--support)
 * [Roadmap](#roadmap)
-* [License & Trademarks](#license--trademarks)
-* [Credits](#credits)
+* [Contributing](#contributing)
+* [Repository Layout](#repository-layout)
+* [Legal & Trademarks](#legal--trademarks)
+* [Contact](#contact)
 
 ---
 
-## Vision & Principles
+## What We Do
 
-**Build premium, honest products** that feel **luxurious** yet **blazingly fast**, with **privacy-first** data practices and transparent governance.
+**Like A King Inc.** is built to be a single accountable partner for both the **physical layer** (logistics, cabling, CCTV, on-site installs) and the **digital layer** (web, AI, SaaS). We design, build, and operate systems that real businesses depend on—whether that’s keeping freight moving, securing facilities, or launching high-traffic web platforms.
 
-Guiding principles:
+**Core pillars**
 
-* **Design with intent:** Minimal, elegant, accessible.
-* **Security by default:** Threat-model early; least privilege everywhere.
-* **Monorepo leverage:** One source of truth for UI, config, and infra.
-* **Operational excellence:** Lint, type, test, ship.
-* **International by design:** English + Georgian (ka) first-class support.
-
----
-
-## Products & Apps
-
-This monorepo hosts multiple production apps and shared packages used across the Like A King Inc. ecosystem:
-
-* **/apps/likeaking-web** — Corporate marketing site & org portal.
-* **/apps/creditfixexpert** — AI consumer-credit SaaS (secure disputes & automations).
-* **/apps/govelora** — Marketplace platform for independent sellers.
-* **/apps/customteespot** — Print-on-demand storefront with policy tooling.
-* **/apps/lux-portal** — Internal admin/ops console (RBAC, billing, analytics).
-* **/apps/redm-market** — Game mod storefront (Tebex export tools & docs).
-
-> Shared libraries live under `/packages/*` to ensure a unified experience across apps.
+* **Logistics & Trucking Ops** — Dispatch optimization, load workflows, route planning, ELD/TMS integrations.
+* **Web & Product Engineering** — Full-stack development, design systems, UX, performance, accessibility.
+* **AI & Data** — LLM applications, automations, analytics, retrieval systems, and data pipelines.
+* **SaaS Incubator** — From concept to subscription billing, with CI/CD and operational runbooks.
+* **Cable Management & CCTV** — Structured cabling, PoE networks, IP cameras, NVR/DVR, secure VLAN design.
+* **Systems Integration** — Stitching together payments, identity, storage, telemetry, and vendor APIs.
 
 ---
 
-## Architecture
+## Flagship Projects & Brands
 
-High-level view:
+* **EcoShine Pro** — *ecoshine.pro*
+  Smart service platform experiences (booking, CRM-lite, ops dashboards) with modern UX and performance budgets.
 
-```
-apps/* (Next.js)
- ├─ public/          # static assets
- ├─ src/
- │   ├─ app/         # Next.js app router
- │   ├─ components/  # app-specific components
- │   └─ pages/       # optional legacy pages
-packages/*
- ├─ ui/              # shared UI (shadcn + Tailwind), tokens, icons
- ├─ config/          # eslint, tsconfig, prettier, commitlint
- ├─ tailwind/        # tailwind preset; theming via CSS variables
- ├─ db/              # prisma schema + migrations
- ├─ utils/           # shared TS utilities
-services/*
- ├─ auth/            # auth adapter (NextAuth/Auth.js), RBAC, session
- ├─ billing/         # Stripe, webhooks, metered usage
- ├─ media/           # uploads (S3/Cloudflare R2), image pipeline
- ├─ ai/              # model gateways & safety rails
-infra/*
- ├─ docker/          # local dev containers (Postgres, Redis, etc.)
- ├─ terraform/       # cloud infra (optional)
- ├─ github/          # workflows, composite actions
-docs/*               # brand, ADRs, runbooks, policies
-```
+* **GoVelora** — *govelora.com · govelora.fr · govelora.ge* (expanding to more ccTLDs)
+  Marketplace foundation for multi-vendor commerce, policy tooling, onboarding, and storefront themes.
 
-Data flows are service-oriented but kept in one repo for speed and consistency. Shared DB models live in `packages/db` with Prisma and are consumed by apps/services.
+* **DaviDio** — *davidio.dev*
+  Engineering portfolio and product lab showcasing development standards, component libraries, and experiments.
+
+* **…and active internal SaaS initiatives** that blend logistics ops, AI copilots, and business automation.
+
+> Some properties are in active development; see [Roadmap](#roadmap) for status.
 
 ---
 
-## Tech Stack
+## Industries Served
 
-**Frontend:** Next.js (App Router), React 18, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion
-**Backend:** Next.js (API routes) + server actions, tRPC/REST, Prisma
-**Storage:** PostgreSQL, Redis (cache/queues), S3-compatible object storage
-**Payments:** Stripe (subscriptions, invoices, webhooks)
-**Auth:** Auth.js / NextAuth (OAuth, email magic links), RBAC with middleware
-**CI/CD:** GitHub Actions → Vercel (apps) / Docker (services)
-**Quality:** ESLint, Prettier, TypeScript strict, Vitest/Jest + Playwright
-**Tooling:** TurboRepo, PNPM, Changesets, Commitlint, Husky, lint-staged
+* **Transportation & Logistics** (carriers, dispatch, 3PL/4PL)
+* **Retail & Marketplaces** (multi-vendor, DTC)
+* **Professional Services & Trades** (field service, appointment ops)
+* **Hospitality & Facilities** (access control, CCTV, structured cabling)
+* **Media & Gaming Adjacent** (storefronts, digital goods, community portals)
 
 ---
 
-## Repository Structure
+## Engagement Models
 
-```
-/apps
-  likeaking-web/
-  creditfixexpert/
-  govelora/
-  customteespot/
-  lux-portal/
-  redm-market/
+* **Advisory** — Architecture reviews, cost/perf audits, security posture, vendor selection.
+* **Build** — Fixed-scope implementations or milestone-based delivery with shared success criteria.
+* **Operate** — Ongoing maintenance, SRE/DevOps, analytics, and feature iteration with SLAs.
 
-/packages
-  ui/
-  config/
-  tailwind/
-  db/
-  utils/
-
-/services
-  auth/
-  billing/
-  media/
-  ai/
-
-/infra
-  docker/
-  terraform/
-  github/
-
-/docs
-  brand/
-  adr/
-  runbooks/
-  policies/
-```
+**Commercial options**: fixed bid, time & materials, or hybrid retainers.
 
 ---
 
-## Design System & Brand
+## Service Catalog
 
-**Tone:** modern luxury, confident and precise.
-**Primary palette:**
+### Logistics & Trucking
 
-* Royal Gold: `#D4AF37`
-* Deep Charcoal: `#0F0F10`
-* Onyx: `#111214`
-* Ivory: `#F8F6F2`
-* Accent Emerald: `#1C7C54` (sparingly for state/success)
+* Dispatch workflows, lane strategy, and load board automations
+* ELD/TMS integrations (REST/CSV), document capture, e-signature
+* Route optimization, geofencing, telematics and simple dashboards
+* KPI design: on-time %, dwell time, cost per mile, driver utilization
 
-**Typography:** Display—*Playfair Display*; UI—*Inter* (or *Geist*).
-**Components:** Based on shadcn/ui; theming via CSS variables for light/dark modes.
-**Assets:** Place SVG logos in `apps/*/public/brand/`. Export favicons via RealFaviconGenerator.
+### Web & Product Engineering
 
-> Accessibility: minimum AA contrast for body text; test with Storybook and axe.
+* Next.js/React apps with App Router, API routes, and server actions
+* Design systems (Tailwind + shadcn/ui), component libraries, Storybook
+* Performance engineering (Core Web Vitals, edge caching, image pipeline)
+* Accessibility (WCAG 2.2 AA goals), internationalization (EN/KA and more)
 
----
+### AI & Data
 
-## Getting Started
+* LLM applications: retrieval-augmented generation (RAG), chat tools, assistants
+* ETL/data pipelines (PostgreSQL, DuckDB/Parquet, warehouse adapters)
+* Vector search and document processing; embeddings and guardrails
+* Analytics: event capture, warehouse modeling, dashboarding
 
-**Prerequisites**
+### SaaS Projects
 
-* Node.js ≥ 20.x
-* PNPM ≥ 9.x (`corepack enable`)
-* Docker Desktop (for Postgres/Redis)
-* OpenSSL (generate secrets)
+* Subscription billing & metered usage (Stripe), tax and invoicing
+* Tenant & role models (RBAC), org workspaces, audit logs
+* CI/CD pipelines, environment promotion, feature flags
+* Support tooling, docs sites, changelog automation
 
-**Clone & Install**
+### Cable Management & CCTV
 
-```bash
-git clone https://github.com/<org>/like-a-king-inc.git
-cd like-a-king-inc
-pnpm install
-```
+* Structured cabling (Cat6/Cat6a), labeling and documentation
+* PoE switching, VLAN segmentation, hardened subnets for cameras/NVRs
+* IP camera planning, ONVIF profiles, retention policies
+* Secure remote access and network monitoring
 
-**Spin up databases (local)**
+### Systems Integration
 
-```bash
-docker compose -f infra/docker/compose.dev.yml up -d
-```
-
-**Bootstrap env files**
-
-```bash
-cp .env.example .env
-cp apps/likeaking-web/.env.example apps/likeaking-web/.env
-# ...repeat for other apps as needed
-```
-
-**Migrate & seed**
-
-```bash
-pnpm db:push     # prisma db push
-pnpm db:seed     # optional seeding if provided
-```
-
-**Run all apps**
-
-```bash
-pnpm dev         # turbo runs dev across apps
-```
-
-**Build**
-
-```bash
-pnpm build
-```
+* Identity (OAuth, email magic links), SSO/SCIM where applicable
+* Storage (S3-compatible, CDN), media pipelines, PDF/CSV tooling
+* Payments, webhooks, background jobs, queue-based workers
+* Observability: logs, traces, metrics, and uptime monitoring
 
 ---
 
-## Configuration
+## Process & Delivery
 
-### Root `.env.example`
+1. **Discovery & Planning**
+   Problem definition, constraints, and a cost–value map. Clear acceptance criteria.
 
-```ini
-# Shared
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/likeaking"
-REDIS_URL="redis://localhost:6379"
-NEXTAUTH_SECRET="generate_with: openssl rand -base64 32"
-NEXTAUTH_URL="http://localhost:3000"
+2. **Architecture & UX**
+   Decision records (ADRs), data flows, low-fidelity UX, and threat models.
 
-# Stripe
-STRIPE_SECRET_KEY="sk_test_xxx"
-STRIPE_WEBHOOK_SECRET="whsec_xxx"
+3. **Build**
+   Trunk-based development with preview environments, code owners, and automated checks.
 
-# Storage
-STORAGE_BUCKET="lak-app"
-STORAGE_REGION="auto"
-STORAGE_ENDPOINT="http://127.0.0.1:9000"
-STORAGE_KEY="minio_key"
-STORAGE_SECRET="minio_secret"
-```
+4. **Hardening**
+   Performance budgets, security reviews, disaster-recovery drills, and load tests (where relevant).
 
-Each app also ships its own `apps/<name>/.env.example` for app-specific toggles (feature flags, third-party keys, etc.).
+5. **Launch & Operate**
+   Runbooks, monitoring, SLAs, and a measured release plan with rollback paths.
 
 ---
 
-## Development Workflow
+## Technology & Tooling
 
-* **Branching:** trunk-based. Feature branches from `main`: `feat/<scope>`, `fix/<scope>`, `docs/<scope>`.
-* **Commits:** [Conventional Commits](https://www.conventionalcommits.org/) enforced (e.g., `feat(ui): add gold button variants`).
-* **PRs:** small, focused, with screenshots for UI changes and test coverage for logic changes.
-* **Reviews:** one approval minimum; CI must pass.
-* **Releases:** Managed via Changesets → version bump → changelog → tag.
+**Web/App:** Next.js, React 18, TypeScript, Tailwind, shadcn/ui, Framer Motion
+**Backend:** API routes/server actions, tRPC/REST, Prisma, Node.js
+**Data:** PostgreSQL, Redis, object storage (S3-compatible), event capture
+**AI:** OpenAI-compatible APIs or local engines; vector DB options; RAG pipelines
+**DevOps:** GitHub Actions, Vercel (apps), Docker (services), Infrastructure as Code (where applicable)
+**Quality:** TypeScript strict, ESLint/Prettier, Vitest/Jest, Playwright, Lighthouse CI
+**Security:** Secrets via envs, signed webhooks, role-based access, least privilege
 
-**Useful Scripts**
-
-```bash
-pnpm dev               # run all dev servers
-pnpm dev --filter @apps/likeaking-web
-pnpm test              # unit tests
-pnpm test:e2e          # e2e (Playwright)
-pnpm lint && pnpm typecheck
-pnpm format
-pnpm db:studio         # open Prisma Studio
-```
+> Tooling is selected per engagement; we also integrate with your existing stack when preferred.
 
 ---
 
-## Quality Gates
+## Security, Privacy & Compliance
 
-* TypeScript strict mode ON across repo
-* ESLint + Prettier + import sorting
-* Unit tests (Vitest/Jest) required for core logic
-* E2E smoke tests per app (Playwright)
-* Lighthouse CI for marketing & storefronts
-* Bundle size checks (next-bundle-analyzer) on PRs
+* **Privacy by Design:** Collect only what’s needed; minimize retention.
+* **Network Hygiene:** Segmented VLANs for CCTV/IoT; deny-by-default firewalling.
+* **Data Handling:** Structured logs, PII tagging, and rotation policies.
+* **Web Security:** CSRF, CSP, strict cookies, authenticated webhooks.
+* **Compliance:** We align to common controls (SOC 2 style practices, GDPR/CCPA considerations) when relevant to scope.
 
----
-
-## CI/CD
-
-**GitHub Actions** (see `infra/github/workflows`):
-
-* `ci.yml` — install, typecheck, lint, test, build
-* `e2e.yml` — Playwright against preview deployments
-* `release.yml` — Changesets release & GitHub Releases
-* `audit.yml` — dependency review & license scanning
-* `lighthouse.yml` — performance budget reports
-
-**Deployments**
-
-* **Vercel** for Next.js apps (envs: Preview, Staging, Production).
-* **Docker** for background services (auth/billing/media/ai).
-* **Terraform** optional for cloud infra (RDS/Cloud SQL, S3/R2, etc.).
+Security issues should be reported privately—see `SECURITY.md` (or open a GitHub Security Advisory).
 
 ---
 
-## Security & Disclosure
+## SLA & Support
 
-We practice **privacy-by-design** and **minimal data collection**.
+* **Priority 1 (Critical):** service down, active data loss → immediate triage.
+* **Priority 2 (High):** core feature degradation → same-day response.
+* **Priority 3 (Normal):** routine bugs/requests → scheduled into the next sprint.
 
-* Never open security issues publicly.
-* Use **GitHub Security Advisories** to report vulnerabilities privately (Security tab → “Report a vulnerability”).
-* Alternatively, contact our security team via the address in `SECURITY.md`.
-* Keys and secrets are managed via environment variables only; no secrets in code or commits.
-* Production webhooks (Stripe, auth) are verified and logged.
-
-> We welcome responsible disclosure and will acknowledge valid reports.
-
----
-
-## Contributing
-
-We love clean PRs that improve performance, security, accessibility, or developer experience.
-
-1. Fork → Feature branch → Commit (Conventional)
-2. Ensure `pnpm lint`, `pnpm typecheck`, and tests pass
-3. Open PR with clear description and screenshots/video if UI
-4. Add/Update docs in `/docs` when necessary
-
-**Local performance tips**
-
-* Filter dev runs: `pnpm dev --filter @apps/govelora`
-* Use Turbo’s cache: `pnpm build --force` (to refresh when needed)
-* Keep Storybook stories minimal and colocated with components
-
----
-
-## Issue Types
-
-* **bug:** Something isn’t working
-* **feat:** New feature request
-* **perf:** Performance improvement
-* **a11y:** Accessibility fix/enhancement
-* **docs:** Documentation only
-* **security:** Security concerns (prefer private advisory)
-* **chore:** Build/CI/infra tasks
-
-Please use the provided **Issue** and **PR** templates for consistency.
+Custom SLAs available under Operate engagements.
 
 ---
 
 ## Roadmap
 
-* **Design System v2:** tokenized color system (Royal Gold, Deep Charcoal, Ivory), motion guidelines, iconography.
-* **Billing Unification:** cross-app subscriptions, usage metering, and consolidated invoices via Stripe.
-* **Globalization:** English & Georgian parity (copy, dates, currency), locale routing.
-* **AI Gateway:** pluggable providers (OpenAI-compatible, local models), strict safety rails, per-app usage limits.
-* **Marketplace 2.0:** seller onboarding, dispute workflows, policy templates, and storefront themes.
-* **Observability:** OpenTelemetry traces + structured logs across apps/services.
-* **Hardening:** threat models & pentest playbooks; periodic dependency audits.
+Public highlights (non-exhaustive):
 
-Roadmap is tracked via GitHub Projects and milestone tags.
+* **GoVelora multi-region rollout:** `.fr`, `.ge`, additional country TLDs with localized policies and payments.
+* **EcoShine Pro upgrades:** booking UX, ops dashboards, automated reminders, and performance budgets.
+* **AI Assistants:** back-office copilots for logistics paperwork and marketplace moderation.
+* **CCTV Playbooks:** standardized PoE/VLAN designs, camera layout templates, and retention calculators.
+* **Shared Design System:** tokenized themes (gold/charcoal/ivory), component docs, and Storybook.
 
 ---
 
-## License & Trademarks
+## Contributing
 
-* Code is **MIT** unless a subdirectory indicates otherwise (see `LICENSE` files in each package/app).
-* “Like A King”, related logos, and brand assets are **trademarks** of **Like A King Inc.** Do not use without written permission.
-* Third-party packages retain their respective licenses.
+This repository contains public docs, issue templates, and (when applicable) open-source packages we maintain.
 
----
-
-## Credits
-
-* Design language inspired by high-craft luxury interfaces; implemented with **shadcn/ui** and **Tailwind**.
-* Icons via **lucide-react**.
-* Thanks to contributors and maintainers across the ecosystem.
+* Use **Conventional Commits** (`feat:`, `fix:`, `docs:`…).
+* For documentation fixes or suggestions, open a PR with screenshots when helpful.
+* For security matters, do **not** open public issues; use private advisories.
 
 ---
 
-### Quick Links
+## Repository Layout
 
-* `/docs/brand` — logos, color tokens, usage rules
-* `/docs/runbooks` — on-call & operations guides
-* `/docs/policies` — security, privacy, contribution
-* `/infra/github/workflows` — CI definitions
-* `/packages/ui` — shared components & tokens
+```
+.
+├─ docs/                 # Service guides, playbooks, ADRs, brand assets
+├─ examples/             # Example integrations and code snippets
+├─ packages/             # OSS packages (if any) extracted from client work
+├─ .github/
+│  ├─ ISSUE_TEMPLATE/    # Bug/feature request templates
+│  └─ workflows/         # CI for docs/lint/examples
+└─ SECURITY.md           # Private disclosure process
+```
 
 ---
 
-**Build boldly. Ship carefully.** Royal quality, modern speed.
+## Legal & Trademarks
+
+* Unless noted, code here is released under the **MIT License**.
+* **Like A King Inc.**, **GoVelora**, **EcoShine Pro**, and associated marks are trademarks or service marks of their respective owners.
+* Third-party names/logos belong to their owners and do not imply endorsement.
+
+---
+
+## Contact
+
+* **Website/Brands:**
+
+  * EcoShine Pro — [https://ecoshine.pro](https://ecoshine.pro)
+  * GoVelora — [https://govelora.com](https://govelora.com) · [https://govelora.fr](https://govelora.fr) · [https://govelora.ge](https://govelora.ge)
+  * DaviDio — [https://davidio.dev](https://davidio.dev)
+* **Business inquiries:** open a GitHub issue in this repo or reach out via the contact form on any of the sites above.
+
+---
+
+### Short Version
+
+We integrate **real-world operations** (logistics, installs, CCTV) with **modern software** (web, AI, SaaS). One accountable partner. Production-ready work. Clear SLAs. Expandable across regions and markets.
